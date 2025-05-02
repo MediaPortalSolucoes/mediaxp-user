@@ -8,7 +8,6 @@ import javax.persistence.*;
 public class DadosEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "assetid")
     private Long assetid;
 

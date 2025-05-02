@@ -15,14 +15,19 @@ public class DadosService {
 
     private final DadosRepository dadosRepository;
     private final UserClient userClient;
+    private final com.mediaportal.mediaxpusers.service.DadosGeneratedRepository dadosGeneratedRepository;
 
-    public DadosService(DadosRepository dadosRepository, UserClient userClient) {
+    public DadosService(DadosRepository dadosRepository, UserClient userClient, com.mediaportal.mediaxpusers.service.DadosGeneratedRepository dadosGeneratedRepository) {
         this.dadosRepository = dadosRepository;
         this.userClient = userClient;
+        this.dadosGeneratedRepository = dadosGeneratedRepository;
     }
 
     public void salvarDados(DadosDTO dadosDTO) {
+        Long assetIdGerado = dadosGeneratedRepository.gerarAssetIdViaProcedure(dadosDTO.getNome());
+
         DadosEntity entity = new DadosEntity();
+        entity.setAssetid(assetIdGerado);
         entity.setNome(dadosDTO.getNome());
         entity.setCpf(dadosDTO.getCpf());
         entity.setEmail(dadosDTO.getEmail());
