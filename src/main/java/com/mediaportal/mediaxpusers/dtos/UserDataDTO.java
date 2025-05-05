@@ -1,16 +1,16 @@
 package com.mediaportal.mediaxpusers.dtos;
 
-public class DadosDTO {
-    private String nome;
+public class UserDataDTO {
+    private String name;
     private String cpf;
     private String email;
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String name) {
+        this.name = name;
     }
 
     public String getCpf() {

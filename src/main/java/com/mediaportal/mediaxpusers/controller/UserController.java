@@ -1,31 +1,36 @@
 package com.mediaportal.mediaxpusers.controller;
 
-import com.mediaportal.mediaxpusers.dtos.DadosDTO;
+import com.mediaportal.mediaxpusers.dtos.UserDataDTO;
 import com.mediaportal.mediaxpusers.service.DadosService;
+import com.mediaportal.mediaxpusers.serviceImpl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/users/dados")
-public class DadosController {
+@RequestMapping("/users")
+public class UserController {
 
-    Logger log = LoggerFactory.getLogger(DadosController.class);
+    Logger log = LoggerFactory.getLogger(UserController.class);
 
-    private final DadosService dadosService;
+    @Autowired
+    private UserServiceImpl userService;
 
-    public DadosController(DadosService dadosService) {
-        this.dadosService = dadosService;
-    }
+    @Autowired
+    DadosService dadosService;
 
-    @PostMapping
-    public ResponseEntity<String> receberDados(@RequestBody DadosDTO dadosDTO) {
+
+    @PostMapping("/createUser")
+    public ResponseEntity<HttpStatus> createUser(@RequestBody UserDataDTO userDTO) {
         try{
-            dadosService.salvarDados(dadosDTO);
-            log.debug("Dados salvo com sucesso");
-            return ResponseEntity.ok("Dados recebidos e salvos com sucesso!");
+            userService.createAssetUser(userDTO);
+
+            //userService.insertAssetInTvci(assetId, userDTO);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(HttpStatus.CREATED);
         } catch (Exception e) {
             log.error("Erro ao salvar dados", e);
             throw new RuntimeException("Erro ao salvar os dados!", e);
