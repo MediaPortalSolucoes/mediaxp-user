@@ -23,25 +23,15 @@ public class UserServiceImpl implements UserService {
                 userDTO.getName());
 
             jdbcTemplate.query(query, rs -> {
-                if (rs.next()) {
-                    System.out.println("AssetId gerado: " + rs.getLong(1));
-                    insertAssetInTvci(rs.getLong(1), userDTO);
-                }
+                insertAssetInTvci(rs.getLong(1), userDTO);
 
             });
         }
         catch (Exception exception) {
             exception.printStackTrace();
         }
-
     }
 
-    @Override
-    public Long getAssetCreated() {
-        String query = "SELECT MAX(assetid) as assetid FROM mc_assetmaster";
-
-        return jdbcTemplate.queryForObject(query, Long.class);
-    }
 
     @Override
     public void insertAssetInTvci(Long assetId, UserDataDTO userDTO) {

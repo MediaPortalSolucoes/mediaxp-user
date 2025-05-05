@@ -28,8 +28,6 @@ public class UserController {
         try{
             userService.createAssetUser(userDTO);
 
-            //userService.insertAssetInTvci(assetId, userDTO);
-
             return ResponseEntity.status(HttpStatus.CREATED).body(HttpStatus.CREATED);
         } catch (Exception e) {
             log.error("Erro ao salvar dados", e);
