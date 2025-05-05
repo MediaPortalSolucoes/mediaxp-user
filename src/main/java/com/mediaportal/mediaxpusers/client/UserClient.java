@@ -1,8 +1,7 @@
 package com.mediaportal.mediaxpusers.client;
 
-import com.mediaportal.mediaxpusers.dtos.DadosDTO;
+import com.mediaportal.mediaxpusers.dtos.UserDataDTO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public interface UserClient {
 
     @PostMapping("/assets/{id}")
-    DadosDTO getUserById(@PathVariable("id") Long id);
+    UserDataDTO getUserById(@PathVariable("id") Long id);
 
 
 }
