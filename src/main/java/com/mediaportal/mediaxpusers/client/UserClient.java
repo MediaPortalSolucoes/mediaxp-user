@@ -5,11 +5,11 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name = "OPENIT-SERVICE", url = " ")
+@FeignClient(value = "OPENIT-SERVICE/assets")
 public interface UserClient {
 
-    @PostMapping("/assets/{id}")
-    UserDataDTO getUserById(@PathVariable("id") Long id);
+    @PostMapping("/{id}")
+    public void publishAsset(@PathVariable("id") Long id);
 
 
 }
