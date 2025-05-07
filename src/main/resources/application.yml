@@ -1,3 +1,8 @@
+logging:
+  level:
+    root: DEBUG
+  file:
+    name: logs/mxpusers.log
 server:
   port: 8095
 
